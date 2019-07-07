@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 import api from '../../services/api';
 
-import { Container, Form, SubmitButton, List } from './styles';
+import Container from '../../components/Container';
+
+import { Form, SubmitButton, List } from './styles';
 
 export default class Main extends Component {
   state = {
@@ -25,7 +27,7 @@ export default class Main extends Component {
   // Salvar os dados do localStorage
   componentDidUpdate(_, prevState) {
     const { repositories } = this.state;
-    if (prevState.repositories !== this.state.repositories) {
+    if (prevState.repositories !== repositories) {
       localStorage.setItem('repositories', JSON.stringify(repositories));
     }
   }
@@ -71,7 +73,7 @@ export default class Main extends Component {
             placeholder="Adicionar repositório"
             value={newRepo}
             onChange={this.handleInputChange}
-          ></input>
+          />
           <SubmitButton loading={loading ? 1 : 0}>
             {/* Conditional Rendering */ loading ? (
               <FaSpinner color="#fff" size={14} />
